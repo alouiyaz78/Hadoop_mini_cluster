@@ -1,0 +1,20 @@
+.
+├── Dockerfile
+├── README.md
+├── arborescence_projet.txt
+├── conf
+│   ├── core-site.xml
+│   ├── hadoop-env.sh
+│   ├── hdfs-site.xml
+│   ├── mapred-site.xml
+│   ├── run-wordcount.sh
+│   ├── ssh_config.txt
+│   ├── start-hadoop.sh
+│   ├── start-worker.sh
+│   ├── workers.txt
+│   └── yarn-site.xml
+├── docker-compose.yml
+├── start-hadoop.sh
+└── structure_projet.txt
+
+3 directories, 15 files

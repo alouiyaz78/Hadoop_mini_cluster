@@ -1,0 +1,42 @@
+version: "3.8"
+
+networks:
+  hadoop_eval:
+    driver: bridge
+
+services:
+  master:
+    image: yazid/hadoop-cluster:latest
+    container_name: master
+    hostname: master
+    ports:
+      - "9870:9870"   # HDFS NameNode UI
+      - "8088:8088"   # YARN ResourceManager UI
+      - "8080:8080"   # Spark Master UI
+      - "9000:9000"   # HDFS port
+    networks:
+      - hadoop_eval
+    depends_on:
+      - slave1
+      - slave2
+    command: bash -c "service ssh start && /root/start-hadoop.sh && tail -f /dev/null"
+
+  slave1:
+    image: yazid/hadoop-cluster:latest
+    container_name: slave1
+    hostname: slave1
+    networks:
+      - hadoop_eval
+    ports:
+      - "8040:8042"
+    command: bash -c "service ssh start && tail -f /dev/null"
+
+  slave2:
+    image: yazid/hadoop-cluster:latest
+    container_name: slave2
+    hostname: slave2
+    networks:
+      - hadoop_eval
+    ports:
+      - "8041:8042"
+    command: bash -c "service ssh start && tail -f /dev/null"

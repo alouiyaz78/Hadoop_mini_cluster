@@ -1,0 +1,11 @@
+# Exclure les données générées par Hadoop
+data/
+
+# Exclure fichiers temporaires et logs
+*.log
+*.tmp
+*.png
+
+# Exclure caches Python éventuels
+__pycache__/
+*.pyc
