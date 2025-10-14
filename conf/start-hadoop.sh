@@ -14,11 +14,15 @@ mkdir -p ~/hdfs/namenode ~/hdfs/datanode ~/hdfs/secondary
 
 # Démarrage HDFS
 echo "Démarrage HDFS..."
+set +e # Désactiver l'arrêt en cas d'erreur/avertissement
 $HADOOP_HOME/sbin/start-dfs.sh
+set -e # Réactiver l'arrêt
 
 # Démarrage YARN
 echo "Démarrage YARN..."
+set +e # Désactiver l'arrêt en cas d'erreur/avertissement
 $HADOOP_HOME/sbin/start-yarn.sh
+set -e # Réactiver l'arrêt
 
 # Démarrage Spark
 echo "Démarrage Spark..."

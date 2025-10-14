@@ -4,11 +4,13 @@ set -e
 echo "--------------------------------------"
 echo "1️⃣ Construction de l'image Docker..."
 echo "--------------------------------------"
+# Vous utilisez 'yazid/hadoop-cluster:latest' pour le build
 docker build -t yazid/hadoop-cluster:latest .
 
 echo "--------------------------------------"
 echo "2️⃣ Démarrage des containers..."
 echo "--------------------------------------"
+# Cette commande recrée les conteneurs avec la nouvelle image et la commande corrigée
 docker-compose up -d
 
 echo "⏳ Attente que SSH soit prêt sur tous les noeuds..."
@@ -17,17 +19,20 @@ sleep 5
 echo "--------------------------------------"
 echo "3️⃣ Formatage du NameNode si nécessaire..."
 echo "--------------------------------------"
-docker exec -it master bash -c "
+# Note: On utilise 'bash -c' ici car c'est une simple vérification de fichier
+docker exec master bash -c "
 if [ ! -f ~/hdfs/namenode/current/VERSION ]; then
-    echo 'Formatage du NameNode...'
-    /usr/local/hadoop/bin/hdfs namenode -format -force
+    echo 'Formatage du NameNode...'
+    # Pour que hdfs soit trouvé, on utilise le chemin absolu ou on s'assure du PATH.
+    /usr/local/hadoop/bin/hdfs namenode -format -force
 fi
 "
 
 echo "--------------------------------------"
-echo "4️⃣ Démarrage HDFS, YARN et Spark..."
+echo "4️⃣ Démarrage HDFS, YARN et Spark PROPRE..."
 echo "--------------------------------------"
-docker exec -it master bash -c "/root/start-hadoop.sh"
+# 🚨 CORRECTION CRUCIALE : On utilise 'bash -c "source ..."' pour charger le PATH et les ENV
+docker exec master bash -c "source ~/.bashrc && /root/start-hadoop.sh"
 
 echo "--------------------------------------"
 echo "✅ Cluster initialisé. UI accessibles :"
