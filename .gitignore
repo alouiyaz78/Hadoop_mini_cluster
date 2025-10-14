@@ -9,3 +9,5 @@ data/
 # Exclure caches Python éventuels
 __pycache__/
 *.pyc
+purchases.txt
+purchases.txt
