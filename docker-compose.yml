@@ -19,7 +19,7 @@ services:
     depends_on:
       - slave1
       - slave2
-    command: bash -c "service ssh start && /root/start-hadoop.sh && tail -f /dev/null"
+    command: bash -c "service ssh start && tail -f /dev/null"
 
   slave1:
     image: yazid/hadoop-cluster:latest
