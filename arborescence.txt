@@ -1,0 +1,40 @@
+.
+├── Dockerfile
+├── README.md
+├── arborescence.txt
+├── arborescence_projet.txt
+├── conf
+│   ├── core-site.xml
+│   ├── hadoop-env.sh
+│   ├── hdfs-site.xml
+│   ├── log4j.properties
+│   ├── mapred-site.xml
+│   ├── run-wordcount.sh
+│   ├── spark-defaults.conf
+│   ├── ssh_config.txt
+│   ├── start-hadoop.sh
+│   ├── workers
+│   └── yarn-site.xml
+├── construction_image.png
+├── data
+│   ├── datanode
+│   ├── datanode1
+│   ├── datanode2
+│   ├── master
+│   │   ├── datanode
+│   │   └── namenode
+│   ├── namenode
+│   ├── worker1
+│   │   ├── datanode
+│   │   └── namenode
+│   └── worker2
+│       ├── datanode
+│       └── namenode
+├── docker-compose.yml
+├── docker_compose.png
+├── docker_images.png
+├── init-cluster.sh
+├── montage_image_vers_hub.png
+└── purchases.txt
+
+16 directories, 22 files
