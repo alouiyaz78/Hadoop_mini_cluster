@@ -15,10 +15,14 @@ ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin
 
 WORKDIR /root
 
-# Installer dépendances
+# Installer dépendances essentielles, SSH, et Python PIP
 RUN apt-get update && apt-get install -y \
-    openjdk-8-jdk ssh rsync wget curl vim python3 python3-dev python3-distutils libssl-dev libffi-dev \
+    openjdk-8-jdk ssh rsync wget curl vim python3 python3-dev python3-distutils libssl-dev libffi-dev python3-pip \
     && rm -rf /var/lib/apt/lists/*
+
+# Installer les bibliothèques Python (Streamlit, Pandas, Matplotlib, Plotly)
+# Utilisation de --trusted-host pour contourner les erreurs SSL/proxy
+RUN pip3 install --trusted-host pypi.org --trusted-host files.pythonhosted.org streamlit pandas matplotlib plotly
 
 # Installer Hadoop
 RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && \

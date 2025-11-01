@@ -5,15 +5,16 @@ networks:
     driver: bridge
 
 services:
-  master:
+  project-master:  
     image: yazid/hadoop-cluster:latest
-    container_name: master
-    hostname: master
+    container_name: hadoop-project-master 
+    hostname: master # Le nom d'hôte
     ports:
       - "9870:9870"   # HDFS NameNode UI
       - "8088:8088"   # YARN ResourceManager UI
       - "8080:8080"   # Spark Master UI
       - "9000:9000"   # HDFS port
+      - "8501:8501"   # Streamlit Dashboard UI
     networks:
       - hadoop_eval
     depends_on:
