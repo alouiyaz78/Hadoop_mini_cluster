@@ -5,7 +5,7 @@ data/
 *.log
 *.tmp
 *.png
-
+*.csv
 # Exclure caches Python éventuels
 __pycache__/
 *.pyc
